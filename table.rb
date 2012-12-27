@@ -1,5 +1,5 @@
 dep 'table.src' do
-  requires 'gcc', 'rabbitmq'
+  requires 'gcc', 'rabbitmq', 'coreutils', 'doc'
 
   source "git@github.com:/mirrordoor/md-table"
  
