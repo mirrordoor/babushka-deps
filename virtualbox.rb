@@ -1,4 +1,4 @@
-deb 'virtualbox' do 
+dep 'virtualbox' do 
   requires 'VirtualBox.app' if Babushka::host.osx?
   requires 'virtualbox.managed' if Babushka::host.linux?
 end
