@@ -1,4 +1,4 @@
 dep 'leiningen.bin' do
-  requires 'benhoskings:java.managed'
+  requires 'java'
   provides 'lein'
 end
