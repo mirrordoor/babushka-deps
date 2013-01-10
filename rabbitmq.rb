@@ -22,4 +22,6 @@ dep('updated rabbitmq source') {
   }
 }
 
-dep "rabbitmq-c.managed"
+dep "rabbitmq-c.managed" do
+  met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.2/lib/librabbitmq.dylib" }
+end

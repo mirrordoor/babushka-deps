@@ -20,7 +20,7 @@ end
 
 dep "svscan md-bin-dir" do
   requires "daemontools.managed" 
-  met? { p = "svscan #{md_name}"; shell("ps axu").grep(/#{p}$/).length == 1 }
+  met? { shell("ps axu") =~ /svscan #{md_name}$/ }
   meet { shell "cd #{md_bin_dir}/..; svscan #{md_name} &> #{md_svscan_logfile} &" }
 end
 
