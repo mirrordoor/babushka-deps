@@ -34,7 +34,7 @@ dep "md-package up to date", :package do
   
   met? do
     shell "cd #{md_src_dir(package)}; git remote update"
-    shell("cd #{md_src_dir(package)}; git status -uno -sb").grep(/behind/).length == 0
+    true unless shell("cd #{md_src_dir(package)}; git status -uno -sb") =~ /behind/
   end
   
   meet do
