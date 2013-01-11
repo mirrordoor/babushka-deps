@@ -39,6 +39,3 @@ def md_svscan_logfile
   "#{md_bin_dir}/svscan.#{date}.log"
 end
 
-def rsync_package(app)
-  sudo "rsync -a --exclude=.git #{md_src_dir(app)} #{md_bin_dir}"
-end
