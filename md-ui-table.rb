@@ -9,7 +9,6 @@ dep 'md-ui-table' do
     "md-package setenv".with(:package => package, :key => "PORT", :value => "3001"),
     "md-package running".with(:package => package)
   ]
-  met? { true }
 end
 
 def md_ui_table_run_script_contents
