@@ -95,7 +95,9 @@ dep "md-package has env dir", :package do
   met? { shell?("ls -l #{md_bin_dir(package)}/env") }
   meet { shell("mkdir -p #{md_bin_dir(package)}/env") }
 end
+
 dep "md-package setenv", :package, :key, :value do
+  requires "md-package has env dir".with(:package => package)
   met? { 
     shell("echo '#{value}'")
     shell("cat #{md_bin_dir(package)}/env/#{key}") == value 
