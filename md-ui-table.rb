@@ -4,6 +4,7 @@ dep 'md-ui-table' do
     "nodejs.bin", 
     "mongodb.managed",
     "md-package up to date".with(:package => package), 
+    "rabbitmq-server running",
     "md-package running".with(:package => package)
   ]
   met? { true }
