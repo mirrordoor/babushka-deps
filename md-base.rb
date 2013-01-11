@@ -18,12 +18,6 @@ dep "local-md-dir owned by appropriate user" do
   meet { sudo "chown -R #{md_username} #{md_bin_dir}" }
 end
 
-dep "svscan md-bin-dir" do
-  requires "daemontools.managed" 
-  met? { shell("ps axu") =~ /svscan #{md_name}$/ }
-  meet { shell "cd #{md_bin_dir}/..; svscan #{md_name} &> #{md_svscan_logfile} &" }
-end
-
 
 dep "md-package up to date", :package do
   requires [
