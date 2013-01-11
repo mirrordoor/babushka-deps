@@ -14,6 +14,13 @@ dep 'md-client-html5' do
     "nagey:running.nginx".with(:nginx_prefix => "/usr/local/nginx")
   ]
 end
+
+dep "md-client-html5 dependencies installed" do
+  requires "bower installed"
+  met? { File.exists? md_web_dir('client-html5')+"/components" }
+  meet { shell "cd #{md_web_dir('client-html5')}; bower install" }
+end
+
 dep "bower installed" do
   requires "npm"
   met? { File.exists? md_web_dir('client-html5')+"/node_modules/bower/" }
