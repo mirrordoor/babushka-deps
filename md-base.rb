@@ -66,7 +66,7 @@ end
 dep "md-package running", :package do
   requires [
     "md-package run script".with(:package => package), 
-    "svscan md-bin-dir"
+    "svscan startup script"
   ]
 end
 
