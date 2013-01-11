@@ -71,7 +71,7 @@ dep "md-package running", :package do
 end
 
 dep "md-package run script", :package do
-  requires "md-package run script exists".with(:package => package)
+  requires "md-package run script exists".with(:package => package), "md-package has env dir".with(:package => package)
   
   run_script = md_run_script package
   
@@ -89,4 +89,16 @@ dep "md-package run script exists", :package do
     script_handle.close
     shell "chmod u+x #{run_script}"
   end
+end
+
+dep "md-package has env dir", :package do
+  met? { shell?("ls -l #{md_bin_dir(package)}/env") }
+  meet { shell("mkdir -p #{md_bin_dir(package)}/env") }
+end
+dep "md-package setenv", :package, :key, :value do
+  met? { 
+    shell("echo '#{value}'")
+    shell("cat #{md_bin_dir(package)}/env/#{key}") == value 
+  }
+  meet { shell("echo '#{value}' > #{md_bin_dir(package)}/env/#{key}") }
 end
