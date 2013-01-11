@@ -18,15 +18,19 @@ dep "local-md-dir owned by appropriate user" do
   meet { sudo "chown -R #{md_username} #{md_bin_dir}" }
 end
 
+dep "web-md dir available" do
+  met? { File.exists? md_web_dir }
+  meet { sudo "mkdir -p #{md_web_dir}"}
+end
 
-dep "md-package up to date", :package do
+dep "md-package up to date", :package, :web do
+  web.default(false)
   requires [
     "md-package cloned".with(:package => package), 
     "local-md dir available", 
     "git",
-    "rsync md-package".with(:package => package)
-  ]
-
+    "rsync md-package".with(:package => package, :web => web)
+  ] 
   
   met? do
     shell "cd #{md_src_dir(package)}; git remote update"
@@ -39,12 +43,14 @@ dep "md-package up to date", :package do
   
 end
 
-dep "rsync md-package", :package do
-  sudo "rsync -a --exclude=.git #{md_src_dir(package)} #{md_bin_dir}"
+dep "rsync md-package", :package, :web do
+  web.default(false)
+  rsync_package(package,web)
 end
   
 
-dep "md-package cloned", :package do
+dep "md-package cloned", :package, :web do
+  web.default(false)
   requires "src-md dir available", "git"
   
   src_dir = md_src_dir(package)
@@ -53,7 +59,7 @@ dep "md-package cloned", :package do
   met? { File.exists? "#{src_dir}/.git/config" }
   meet do
     shell "git clone #{git_url} #{src_dir}"
-    rsync_package(package)
+    rsync_package(package,web)
   end
 end
 

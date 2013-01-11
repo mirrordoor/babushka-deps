@@ -21,6 +21,10 @@ def md_bin_dir(app=nil)
   "/usr/local/#{md_name}/#{app}" unless app.nil?
 end
 
+def md_web_dir(app=nil)
+  "/var/www/mirrordoor/#{app}"
+end
+
 def md_git_url(app=nil)
   return "git@github.com:#{md_name}" if app.nil?
   "git@github.com:#{md_name}/#{app}.git" unless app.nil?
@@ -39,3 +43,8 @@ def md_svscan_logfile
   "#{md_bin_dir}/svscan.#{date}.log"
 end
 
+def rsync_package(package, web=false)
+  to_dir = md_bin_dir unless web
+  to_dir = md_web_dir if web
+  sudo "rsync -a --exclude=.git #{md_src_dir(package)} #{to_dir}"
+end
