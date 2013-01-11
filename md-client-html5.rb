@@ -2,8 +2,8 @@ dep 'md-client-html5' do
   package = 'client-html5'
   requires [ 
     "md-package up to date".with(:package => package, :web => true), 
-    "nagey:vhost configured.nginx".with(
       :domain => "mirrordoor.local",
+    "nagey:vhost enabled.nginx".with(
       :vhost_type => "static",
       :path => md_web_dir(package),
       :nginx_prefix => "/usr/local/nginx",
