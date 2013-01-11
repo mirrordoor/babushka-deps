@@ -6,7 +6,7 @@ dep 'md-ui-table' do
     "md-package up to date".with(:package => package), 
     "rabbitmq-server running",
     "md-package setenv".with(:package => package, :key => "RABBIT_HOST", :value => "localhost"),
-    "md-package setenv".with(:package => package, :key => "PORT", :value => "3001"),
+    "md-package setenv".with(:package => package, :key => "PORT", :value => "3000"),
     "md-package running".with(:package => package)
   ]
 end
