@@ -15,7 +15,6 @@ def md_handHistory_logger_run_script_contents
   <<-rsc
 #!/bin/sh
 npm install
-npm start
 envdir env npm start
   rsc
 end
