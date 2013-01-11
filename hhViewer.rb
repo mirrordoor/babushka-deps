@@ -6,7 +6,6 @@ dep 'md-handHistory-viewer' do
     "md-package up to date".with(:package => package), 
     "md-package running".with(:package => package)
   ]
-  met? { true }
 end
 
 def md_handHistory_viewer_run_script_contents
