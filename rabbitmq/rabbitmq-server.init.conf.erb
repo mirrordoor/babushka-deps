@@ -1,0 +1,16 @@
+# rabbitmq-server
+
+description "rabbitmq server"
+author "RabbitMQ"
+
+start on (filesystem and net-device-up IFACE=lo)
+stop on runlevel [!2345]
+
+env DAEMON=/usr/local/sbin/rabbitmq-server
+env PID=/var/run/rabbitmq-server.pid
+
+#expect fork
+respawn
+respawn limit 10 5
+
+exec $DAEMON 

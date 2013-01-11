@@ -25,3 +25,29 @@ dep('updated rabbitmq source') {
 dep "rabbitmq-c.managed" do
   met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.2/lib/librabbitmq.dylib" }
 end
+
+dep "rabbitmq-server running" do
+  requires "rabbitmq-server launch script"
+end
+
+dep "rabbitmq-server launch script" do
+  requires 'rabbitmq-server.managed' 
+  on :linux do
+    met? {
+      raw_shell('initctl list | grep rabbitmq-server').stdout[/^rabbitmq-server\b/]
+    }
+    meet {
+      render_erb 'rabbitmq/rabbitmq-server.init.conf.erb', :to => '/etc/init/rabbitmq-server.conf'
+    }
+  end
+  on :osx do
+    requires "usr local bin in root launchd path", "home set in root launchd env"
+    met? { !sudo('launchctl list').split("\n").grep(/com\.rabbitmq\.server/).empty? }
+    meet {
+      render_erb 'rabbitmq/rabbitmq-server.launchd.erb', :to => '/Library/LaunchDaemons/com.rabbitmq.server.plist', :sudo => true, :comment => '<!--', :comment_suffix => '-->'
+      sudo 'launchctl load -w /Library/LaunchDaemons/com.rabbitmq.server.plist'
+    }
+  end
+end
+
+  
