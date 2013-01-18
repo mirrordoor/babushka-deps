@@ -6,3 +6,10 @@ dep "md-stack" do
     "md-ui-table"
   ]
 end
+
+dep "update md-stack" do
+  requires "md-stack"
+  
+  sudo "killall -9 node"
+  
+end
