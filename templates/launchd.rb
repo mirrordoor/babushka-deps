@@ -1,7 +1,7 @@
 require 'fileutils'
 
 meta :launchd, :for => :osx do
-  accepts_value_for :destination, "~/Library/LaunchAgents"
+  accepts_value_for :destination, "/Library/LaunchDaemons"
 
   template {
     def plist
@@ -20,10 +20,10 @@ meta :launchd, :for => :osx do
     )
 
     met? {
-      shell('launchctl list')[basename]
+      sudo('launchctl list')[basename]
     }
     meet {
-      log shell "launchctl load -w '#{plist_path}'"
+      log sudo "launchctl load -w '#{plist_path}'"
     }
   }
 end
@@ -46,9 +46,9 @@ dep 'launchd plist copied', :package, :plist, :destination, :for => :osx do
     FileUtils.compare_file(plist_template, plist_path)
   }
   meet {
-    plist_template.copy destination.p
+    sudo "cp #{plist_template} #{destination}"
   }
   after {
-    log shell "launchctl unload -w '#{plist_path}'"
+    log sudo "launchctl unload -w '#{plist_path}'"
   }
 end
