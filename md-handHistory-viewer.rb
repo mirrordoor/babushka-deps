@@ -3,7 +3,7 @@ dep 'md-handHistory-viewer' do
   requires [ "npm", 
     "nodejs.bin", 
     "mongodb.managed", 
-    "md-package up to date".with(:package => package), 
+    "md-package up to date".with(:package => package, :web => false), 
     "md-package setenv".with(:package => package, :key => "PORT", :value => "3002"),
     "md-package running".with(:package => package)
   ]

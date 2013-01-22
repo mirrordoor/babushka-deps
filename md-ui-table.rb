@@ -3,7 +3,7 @@ dep 'md-ui-table' do
   requires [ "npm", 
     "nodejs.bin", 
     "redis",
-    "md-package up to date".with(:package => package), 
+    "md-package up to date".with(:package => package, :web => false), 
     "rabbitmq-server running",
     "md-package setenv".with(:package => package, :key => "RABBIT_HOST", :value => "localhost"),
     "md-package setenv".with(:package => package, :key => "PORT", :value => "3000"),
