@@ -1,7 +1,7 @@
 dep 'redis' do
   requires "redis-server.managed" if Babushka::host.linux?
-  requires 'redis.managed' if Babushka::host.mac?
-  requires 'redis.launchd' if Babushka::host.mac?
+  requires 'redis.managed' if Babushka::host.osx?
+  requires 'redis.launchd' if Babushka::host.osx?
 end
 
 dep 'redis.managed' do
