@@ -2,7 +2,7 @@ dep 'md-ui-table' do
   package = 'md-ui-table'
   requires [ "npm", 
     "nodejs.bin", 
-    "mongodb.managed",
+    "redis",
     "md-package up to date".with(:package => package), 
     "rabbitmq-server running",
     "md-package setenv".with(:package => package, :key => "RABBIT_HOST", :value => "localhost"),

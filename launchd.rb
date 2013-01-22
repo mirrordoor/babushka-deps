@@ -1,6 +1,6 @@
 dep "usr local bin in root launchd path" do
   requires "launchd.conf exists"
-  met? { sudo("launchctl export|grep PATH|grep /usr/local/bin") != nil}
+  met? { sudo("launchctl export|grep PATH|grep /usr/local/bin|grep /usr/local/sbin") != nil}
   meet do
     a = sudo "launchctl export|grep PATH"
     b = a.split ';'
@@ -24,8 +24,4 @@ end
 dep "launchd.conf exists" do
   met? { shell? "ls -l /etc/launchd.conf" }
   meet { render_erb 'launchd/launchd.conf.erb', :to => '/etc/launchd.conf', :sudo => true, :comment => "#" }
-end
-
-dep "home set in root launchd env" do
-  sudo "launchctl setenv HOME #{File.expand_path('~')}"
 end

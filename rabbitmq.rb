@@ -41,7 +41,7 @@ dep "rabbitmq-server launch script" do
     }
   end
   on :osx do
-    requires "usr local bin in root launchd path", "home set in root launchd env"
+    requires "usr local bin in root launchd path"
     met? { !sudo('launchctl list').split("\n").grep(/com\.rabbitmq\.server/).empty? }
     meet {
       render_erb 'rabbitmq/rabbitmq-server.launchd.erb', :to => '/Library/LaunchDaemons/com.rabbitmq.server.plist', :sudo => true, :comment => '<!--', :comment_suffix => '-->'
