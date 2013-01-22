@@ -1,9 +1,7 @@
 dep 'redis' do
   requires 'redis.managed'
   requires 'redis.launchd'
-  on :linux do
-    requires "redis-server.managed"
-  end
+  requires "redis-server.managed" if Babushka::host.linux?
 end
 
 dep 'redis.managed' do
