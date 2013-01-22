@@ -28,6 +28,7 @@ dep "md-package up to date", :package, :web do
   requires [
     "md-package cloned".with(:package => package), 
     "local-md dir available", 
+    "web-md dir available",
     "git",
     "rsync md-package".with(:package => package, :web => web)
   ] 
