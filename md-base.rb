@@ -24,7 +24,7 @@ dep "web-md dir available" do
 end
 
 dep "md-package up to date", :package, :web do
-  web.default(false)
+  web.default('no')
   requires [
     "md-package cloned".with(:package => package), 
     "local-md dir available", 
@@ -45,13 +45,13 @@ dep "md-package up to date", :package, :web do
 end
 
 dep "rsync md-package", :package, :web do
-  web.default(false)
+  web.default('no')
   rsync_package(package,web)
 end
   
 
 dep "md-package cloned", :package, :web do
-  web.default(false)
+  web.default('no')
   requires "src-md dir available", "git"
   
   src_dir = md_src_dir(package)
