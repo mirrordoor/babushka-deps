@@ -21,13 +21,13 @@ end
 dep "md-client-html5 dependencies installed" do
   requires "bower installed"
   met? { File.exists? md_web_dir('client-html5')+"/components" }
-  meet { shell "cd #{md_web_dir('client-html5')}; bower install" }
+  meet { shell "cd #{md_web_dir('client-html5')}; ./node_modules/bower/bin/bower install" }
 end
 
 dep "bower installed" do
   requires "npm"
   met? { File.exists? md_web_dir('client-html5')+"/node_modules/bower/" }
-  meet { shell "cd #{md_web_dir('client-html5')}; npm install bower" }
+  meet { shell "cd #{md_web_dir('client-html5')}; npm install" }
 end
 
 dep "hostname configured", :myhostname do
