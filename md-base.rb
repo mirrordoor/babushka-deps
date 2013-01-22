@@ -26,7 +26,7 @@ end
 dep "md-package up to date", :package, :web do
   web.default('no')
   requires [
-    "md-package cloned".with(:package => package), 
+    "md-package cloned".with(:package => package, :web => web), 
     "local-md dir available", 
     "web-md dir available",
     "git",
