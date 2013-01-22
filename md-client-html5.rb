@@ -1,11 +1,12 @@
-dep 'md-client-html5' do
+dep 'md-client-html5', :web_hostname do
+  web_hostname.default(md_client_html5_hostname)
   package = 'client-html5'
   requires [ 
     "md-package up to date".with(:package => package, :web => "web"), 
     "md-client-html5 dependencies installed",
     "hostname configured".with(:myhostname => md_client_html5_hostname),
     "nagey:vhost enabled.nginx".with(
-      :domain => md_client_html5_hostname,
+      :domain => web_hostname,
       :vhost_type => "static",
       :path => md_web_dir(package),
       :nginx_prefix => "/usr/local/nginx",
