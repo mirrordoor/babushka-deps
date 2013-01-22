@@ -13,7 +13,7 @@ dep 'md-client-html5', :web_hostname do
       :domain_aliases => '',
       :force_https => 'no',
       :enable_https => 'no',
-      :listen_host => "127.0.0.1"
+      :listen_host => "*"
     ),
     "nagey:running.nginx".with(:nginx_prefix => "/usr/local/nginx")
   ]
