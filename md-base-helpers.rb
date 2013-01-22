@@ -22,7 +22,7 @@ def md_bin_dir(app=nil)
 end
 
 def md_web_dir(app=nil)
-  "/var/www/mirrordoor/#{app}"
+  "/var/www/#{md_name}/#{app}"
 end
 
 def md_git_url(app=nil)
