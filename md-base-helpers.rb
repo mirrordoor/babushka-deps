@@ -44,7 +44,7 @@ def md_svscan_logfile
 end
 
 def rsync_package(package, web=false)
-  to_dir = md_bin_dir unless web
-  to_dir = md_web_dir if web
+  to_dir = md_bin_dir unless web == 'web'
+  to_dir = md_web_dir if web == 'web'
   sudo "rsync -a --exclude=.git #{md_src_dir(package)} #{to_dir}"
 end
