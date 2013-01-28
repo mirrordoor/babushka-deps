@@ -1,7 +1,7 @@
 host = Babushka::host
 
 dep 'table.src' do
-  requires 'gcc', 'rabbitmq-c.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
+  requires 'gcc', 'binutils.managed', 'rabbitmq-c.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
 
   source File.expand_path("~/src")
  
@@ -24,6 +24,11 @@ dep "md-table" do
     "md-package up to date".with(:package => package),
     "rabbitmq-server running",
     "md-package setenv".with(:package => package, :key => "LOCAL", :value => "/usr/local"),
+    "md-table built",
     "md-package running".with(:package => package)
   ]
+end
+
+dep "md-table built" do
+  requires "rabbitmq-c.managed", "jsoncpp"
 end
