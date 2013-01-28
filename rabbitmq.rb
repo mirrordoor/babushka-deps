@@ -4,6 +4,7 @@ dep('rabbitmq-server.managed') {
   requires {
     on :ubuntu, 'updated rabbitmq source'
   }
+  requires "usr local sbin in PATH", "usr local bin in PATH"
   
   installs {
     via :apt, 'rabbitmq-server' if Babushka::host.linux?
@@ -50,4 +51,18 @@ dep "rabbitmq-server launch script" do
   end
 end
 
+dep "usr local sbin in PATH" do
+  met? { (shell("echo $PATH") =~ /usr\/local\/sbin/) != nil }
+  meet { 
+    sudo "echo 'PATH=$PATH:/usr/local/sbin' >> /etc/profile"
+    shell "export PATH=$PATH:/usr/local/sbin"
+   }
+end
   
+dep "usr local bin in PATH" do
+  met? { (shell("echo $PATH") =~ /usr\/local\/bin/) != nil }
+  meet { 
+    sudo "echo 'PATH=$PATH:/usr/local/bin' >> /etc/profile"
+    shell "export PATH=$PATH:/usr/local/bin"
+   }
+end
