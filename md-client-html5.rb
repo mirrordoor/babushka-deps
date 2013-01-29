@@ -1,5 +1,6 @@
-dep 'md-client-html5', :web_hostname do
+dep 'md-client-html5', :web_hostname, :listen_port do
   web_hostname.default(md_client_html5_hostname)
+  listen_port.default(80)
   package = 'client-html5'
   requires [ 
     "md-package up to date".with(:package => package, :web => "web"), 
@@ -13,7 +14,8 @@ dep 'md-client-html5', :web_hostname do
       :domain_aliases => '',
       :force_https => 'no',
       :enable_https => 'no',
-      :listen_host => "*"
+      :listen_host => "*",
+      :listen_port => listen_port
     ),
     "nagey:running.nginx".with(:nginx_prefix => "/usr/local/nginx")
   ]
