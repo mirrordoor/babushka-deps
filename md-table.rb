@@ -31,13 +31,13 @@ dep "md-table" do
     "md-package up to date".with(:package => package, :web => 'no'),
     "rabbitmq-server running",
     "md-package setenv".with(:package => package, :key => "LOCAL", :value => "/usr/local"),
-    "md-table built",
+    "md-table built".with(:package => package),
     "md-package running".with(:package => package)
   ]
 end
 
 
-dep "md-table built" do
+dep "md-table built", :package do
   requires 'gcc.managed', 'binutils.managed', 'rabbitmq-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed'
 
   env_var = {}
@@ -60,9 +60,9 @@ dep "md-table built" do
   
   met? { something }
   meet do
-    log_shell "clean", "#{env_var} make clean"
-    log_shell "build", "#{env_var} make"
-    Babushka::SrcHelper.install_src! "#{env_var} make install"
+    log_shell "clean", "#{env_var} cd #{md_src_dir(package)}; make clean"
+    log_shell "build", "#{env_var} cd #{md_src_dir(package)}; make"
+    Babushka::SrcHelper.install_src! "#{env_var} cd #{md_src_dir(package)}; make install"
     something = true
   end
   
