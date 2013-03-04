@@ -67,3 +67,11 @@ dep "md-table built" do
   end
   
 end
+
+
+def md_table_run_script_contents
+  <<-rsc
+  #!/bin/sh
+  ./supervise.sh ./tblsrv
+  rsc
+end
