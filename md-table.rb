@@ -25,11 +25,6 @@ dep 'table.src' do
 
 end
 
-dep "md-table demo" do
-  requires "md-table clean"
-  log_shell "Starting Tables", "cd #{md_bin_dir('md-table')}; ./sometables.sh"
-end
-
 dep "md-table clean" do
   shell "rm -rf #{md_bin_dir('md-table')}"
   requires "md-table"
@@ -77,6 +72,7 @@ dep "md-table built", :package do
     log_shell "build", "#{env_var}; cd #{md_src_dir(package)}; make"
     Babushka::SrcHelper.install_src! "#{env_var}; cd #{md_src_dir(package)}; make install"
     log_shell "final install", "mv #{md_bin_dir(package)}/bin/* #{md_bin_dir(package)}/"
+    log_shell "Starting Tables", "cd #{md_bin_dir('md-table')}; ./sometables.sh"
     something = true
   end
   
