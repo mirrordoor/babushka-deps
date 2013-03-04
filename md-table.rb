@@ -60,9 +60,9 @@ dep "md-table built", :package do
   
   met? { something }
   meet do
-    log_shell "clean", "#{env_var} cd #{md_src_dir(package)}; make clean"
-    log_shell "build", "#{env_var} cd #{md_src_dir(package)}; make"
-    Babushka::SrcHelper.install_src! "#{env_var} cd #{md_src_dir(package)}; make install"
+    log_shell "clean", "#{env_var}; cd #{md_src_dir(package)}; make clean"
+    log_shell "build", "#{env_var}; cd #{md_src_dir(package)}; make"
+    Babushka::SrcHelper.install_src! "#{env_var}; cd #{md_src_dir(package)}; make install"
     something = true
   end
   
