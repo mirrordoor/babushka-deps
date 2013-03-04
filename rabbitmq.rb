@@ -36,8 +36,13 @@ dep "rabbitmq-c.managed" do
   met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.2/lib/librabbitmq.dylib" }
 end
 
-dep 'librabbitmq-dev.managed'
-dep 'librabbitmq0.managed'
+dep 'librabbitmq-dev.managed' do
+  met? { shell? "/usr/lib/librabbitmq.so"}
+end
+
+dep 'librabbitmq0.managed' do
+  met? { shell? "/usr/lib/librabbitmq.so.0" }
+end
 
 
 dep "rabbitmq-server running" do
