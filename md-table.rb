@@ -9,7 +9,7 @@ dep 'libjsoncpp-dev.managed'
 
 
 dep 'table.src' do
-  requires 'gcc', 'binutils.managed', 'rabbitmq-c.managed', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'librabbitmq-dev.managed', 'librabbitmq0.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
+  requires 'gcc', 'binutils.managed', 'rabbit-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
 
   source File.expand_path("~/src")
  

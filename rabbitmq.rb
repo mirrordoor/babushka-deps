@@ -23,6 +23,15 @@ dep('updated rabbitmq source') {
   }
 }
 
+dep 'rabbitmq-dev' do
+  requires "rabbitmq-c.managed" if Babushka::host.osx?
+  requires "rabbitmq-dev linux" if Babushka::host.linux?
+end
+
+dep "rabbitmq-dev linux" do
+  requires 'librabbitmq-dev.managed', 'librabbitmq0.managed'
+end
+
 dep "rabbitmq-c.managed" do
   met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.2/lib/librabbitmq.dylib" }
 end
