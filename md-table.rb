@@ -25,6 +25,11 @@ dep 'table.src' do
 
 end
 
+dep "md-table demo" do
+  requires "md-table clean"
+  log_shell "Starting Tables", "cd #{md_bin_dir('md-table')}; ./sometables.sh"
+end
+
 dep "md-table clean" do
   shell "rm -rf #{md_bin_dir('md-table')}"
   requires "md-table"
