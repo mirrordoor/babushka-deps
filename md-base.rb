@@ -29,9 +29,11 @@ dep "md-package up to date", :package, :web do
     "local-md dir available", 
     "web-md dir available",
     "git",
-    "md-package cloned".with(:package => package, :web => web), 
-    "rsync md-package".with(:package => package, :web => web)
+    "md-package cloned".with(:package => package, :web => web)
   ] 
+
+  requires "rsync md-package".with(:package => package, :web => web) unless package == 'md-table'
+
   
   met? do
     shell "cd #{md_src_dir(package)}; git remote update"

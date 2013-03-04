@@ -41,6 +41,9 @@ dep "md-table built", :package do
   requires 'gcc.managed', 'binutils.managed', 'rabbitmq-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed'
 
   env_var = {}
+  
+  env_var['LOCAL'] = md_bin_dir(package)
+  
   if host.linux?
     env_var['LIBBFD'] = "-lbfd"
     env_var['STD'] = "-std=c++0x"
