@@ -1,11 +1,10 @@
 host = Babushka::host
 
 dep 'gcc.managed'
+
 dep 'binutils.managed' do
   met? { shell? "ls /usr/bin/ld" }
 end
-dep 'libjsoncpp0.managed'
-dep 'libjsoncpp-dev.managed'
 
 
 dep 'table.src' do

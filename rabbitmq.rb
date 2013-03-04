@@ -37,11 +37,11 @@ dep "rabbitmq-c.managed" do
 end
 
 dep 'librabbitmq-dev.managed' do
-  met? { shell? "/usr/lib/librabbitmq.so"}
+  met? { shell? "ls /usr/lib/librabbitmq.so"}
 end
 
 dep 'librabbitmq0.managed' do
-  met? { shell? "/usr/lib/librabbitmq.so.0" }
+  met? { shell? "ls /usr/lib/librabbitmq.so.0" }
 end
 
 
