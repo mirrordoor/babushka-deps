@@ -25,6 +25,11 @@ dep 'table.src' do
 
 end
 
+dep "md-table clean" do
+  shell "rm -rf #{md_bin_dir('md-table')}"
+  requires "md-table"
+end
+
 dep "md-table" do
   package = 'md-table'
   requires [ 
@@ -66,6 +71,7 @@ dep "md-table built", :package do
     log_shell "clean", "#{env_var}; cd #{md_src_dir(package)}; make clean"
     log_shell "build", "#{env_var}; cd #{md_src_dir(package)}; make"
     Babushka::SrcHelper.install_src! "#{env_var}; cd #{md_src_dir(package)}; make install"
+    log_shell "final install", "mv #{md_src_dir(package)}/bin/* #{md_src_dir(package)}/"
     something = true
   end
   
