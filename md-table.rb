@@ -39,7 +39,7 @@ end
 
 
 dep "md-table built" do
-  requires 'gcc.managed', 'binutils.managed', 'rabbitmq-c.managed', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'librabbitmq-dev.managed', 'librabbitmq0.managed', 'nagey:coreutils.managed'
+  requires 'gcc.managed', 'binutils.managed', 'rabbitmq.dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed'
 
   env_var = {}
   if host.linux?
