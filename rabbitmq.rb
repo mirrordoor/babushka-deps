@@ -27,6 +27,10 @@ dep "rabbitmq-c.managed" do
   met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.2/lib/librabbitmq.dylib" }
 end
 
+dep 'librabbitmq-dev.managed'
+dep 'librabbitmq0.managed'
+
+
 dep "rabbitmq-server running" do
   requires "rabbitmq-server launch script"
 end

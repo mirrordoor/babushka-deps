@@ -1,6 +1,10 @@
 host = Babushka::host
 
 dep 'gcc.managed'
+dep 'binutils.managed'
+dep 'libjsoncpp0.managed'
+dep 'libjsoncpp-dev.managed'
+
 
 dep 'table.src' do
   requires 'gcc', 'binutils.managed', 'rabbitmq-c.managed', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'librabbitmq-dev.managed', 'librabbitmq0.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
