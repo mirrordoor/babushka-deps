@@ -21,7 +21,7 @@ end
 dep "md-table" do
   package = 'md-table'
   requires [ 
-    "md-package up to date".with(:package => package),
+    "md-package up to date".with(:package => package, :web => 'no'),
     "rabbitmq-server running",
     "md-package setenv".with(:package => package, :key => "LOCAL", :value => "/usr/local"),
     "md-table built",
@@ -31,22 +31,30 @@ end
 
 dep "md-table built" do
   requires 'gcc', 'binutils.managed', 'rabbitmq-c.managed', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'librabbitmq-dev.managed', 'librabbitmq0.managed', 'nagey:coreutils.managed'
-  provides 'table >= 0.1.0'
-  configure_env "LIBBFD='-lbfd'" if host.linux?
-  configure_env "STD='-std=c++0x'" if host.linux?
-  configure_env "WERROR='-Werror'" if host.linux?
 
-  configure_env "LIBBFD=" if host.osx?
-  configure_env "STD=" if host.osx?
-  configure_env "WERROR=" if host.osx?
+  env_var = {}
+  if host.linux?
+    env_var['LIBBFD'] = "-lbfd"
+    env_var['STD'] = "-std=c++0x"
+    env_var['WERROR'] = "-Werror"
+  end
+  
+  if host.osx?
+    env_var['LIBBFD'] = ""
+    env_var['STD'] = ""
+    env_var['WERROR'] = ""
+  end    
+  
+  env_var = env_var.map  { |x,i| "export #{x}='#{i}'" }
+  env_var = env_var.join ';'
   
   something = false
   
   met? { something }
   meet do
-    log_shell "clean", "make clean"
-    log_shell "build", "make"
-    Babushka::SrcHelper.install_src! "make install"
+    log_shell "clean", "#{env_var} make clean"
+    log_shell "build", "#{env_var} make"
+    Babushka::SrcHelper.install_src! "#{env_var} make install"
     something = true
   end
   
