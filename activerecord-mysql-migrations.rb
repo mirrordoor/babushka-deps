@@ -1,5 +1,3 @@
-dep "mysql.managed"
-
 dep "activerecord-mysql2-adapter.gem" do
   met? do 
     begin
@@ -12,5 +10,5 @@ dep "activerecord-mysql2-adapter.gem" do
 end
 
 dep "activerecord mysql migrations" do
-  requires "mysql.managed", "activerecord-mysql2-adapter.gem"
+  requires "mysql", "activerecord-mysql2-adapter.gem"
 end
