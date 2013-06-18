@@ -10,7 +10,7 @@ dep 'nodejs.src', :version do
 end
 
 dep "node_path", :nodepath do
-  met? { shell? "echo $PATH | grep #{:nodepath}" }
-  meet { sudo "echo #{:nodepath} >> /etc/profile" }
+  met? { shell? "echo $PATH | grep #{nodepath}" }
+  meet { sudo "echo #{nodepath} >> /etc/profile" }
 end
   
