@@ -11,6 +11,6 @@ end
 
 dep "node_path", :nodepath do
   met? { shell? "echo $PATH | grep #{nodepath}" }
-  meet { sudo "echo #{nodepath} >> /etc/profile" }
+  meet { sudo "echo PATH=#{nodepath}:$PATH >> /etc/profile; source /etc/profile" }
 end
   
