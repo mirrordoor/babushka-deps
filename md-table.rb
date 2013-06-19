@@ -3,9 +3,11 @@ host = Babushka::host
 dep 'gcc.managed'
 
 dep 'binutils.managed' do
+  requires "binutils-dev.managed"
   met? { shell? "ls /usr/bin/ld" }
 end
 
+dep "binutils.managed"
 
 dep 'table.src' do
   requires 'gcc', 'binutils.managed', 'rabbit-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
