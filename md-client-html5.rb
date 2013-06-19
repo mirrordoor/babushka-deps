@@ -25,7 +25,7 @@ end
 
 dep "md-client-html5 dependencies installed" do
   requires "bower installed"
-  met? { File.exists? md_web_dir('client-html5')+"/components" }
+  met? { File.exists? md_web_dir('client-html5')+"/app/components" }
   meet { shell "cd #{md_web_dir('client-html5')}; ./node_modules/bower/bin/bower install" }
 end
 
