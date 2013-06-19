@@ -1,9 +1,9 @@
 dep "md-stack" do
   requires [
-    "md-client-html5",
     "md-handHistory-viewer",
     "md-handHistory-logger",
-    "md-ui-table"
+    "md-ui-table",
+    "md-client-html5"
   ]
 end
 
