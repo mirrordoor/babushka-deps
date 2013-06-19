@@ -51,7 +51,7 @@ dep "md-table built", :package do
 
   env_var = {}
   
-  env_var['LOCAL'] = md_bin_dir(package)
+  env_var['LOCAL'] = md_bin_dir(package)+"/"
   
   if host.linux?
     env_var['LIBBFD'] = "-lbfd"
