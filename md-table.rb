@@ -7,7 +7,9 @@ dep 'binutils.managed' do
   met? { shell? "ls /usr/bin/ld" }
 end
 
-dep "binutils-dev.managed"
+dep "binutils-dev.managed" do
+  met? { shell? "ls /usr/include/bfd.h" }
+end
 
 dep 'table.src' do
   requires 'gcc', 'binutils.managed', 'rabbit-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed', "md-package cloned".with(:package => "md-table")
