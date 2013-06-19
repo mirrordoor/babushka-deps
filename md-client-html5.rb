@@ -8,14 +8,16 @@ dep 'md-client-html5', :web_hostname, :listen_port do
     "hostname configured".with(:myhostname => md_client_html5_hostname),
     "nagey:vhost enabled.nginx".with(
       :domain => web_hostname,
-      :vhost_type => "static",
+      :vhost_type => "websocket_proxy",
       :path => md_web_dir(package),
       :nginx_prefix => "/usr/local/nginx",
       :domain_aliases => '',
       :force_https => 'no',
       :enable_https => 'no',
       :listen_host => "*",
-      :listen_port => listen_port
+      :listen_port => listen_port,
+      :proxy_port => 3000,
+      :proxy_host => "localhost"
     ),
     "nagey:running.nginx".with(:nginx_prefix => "/usr/local/nginx")
   ]
