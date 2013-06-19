@@ -1,7 +1,7 @@
 dep 'md-ui-table' do
   package = 'md-ui-table'
   requires [ "npm", 
-    "nodejs.bin", 
+    "nodejs.src", 
     "redis",
     "md-package up to date".with(:package => package, :web => 'no'), 
     "rabbitmq-server running",

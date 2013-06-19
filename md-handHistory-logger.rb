@@ -1,7 +1,7 @@
 dep 'md-handHistory-logger' do
   package = 'md-handHistory-logger'
   requires [ "npm", 
-    "nodejs.bin", 
+    "nodejs.src", 
     "mongodb.managed", 
     "md-package up to date".with(:package => package, :web => 'no'), 
     "md-package setenv".with(:package => package, :key => "RABBIT_HOST", :value => "localhost"),
