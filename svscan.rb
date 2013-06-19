@@ -20,6 +20,9 @@ end
 
 dep "svscan running" do
   requires "svscan startup script"
+  met? {
+    shell? "ps ax|grep svscan | grep -v grep"
+  }
   meet :on => :linux do
     sudo 'initctl start svscan'
   end
