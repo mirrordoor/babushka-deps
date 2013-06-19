@@ -18,3 +18,12 @@ dep 'svscan startup script' do
   end
 end
 
+dep "svscan running" do
+  requires "svscan startup script"
+  meet :on => :linux do
+    sudo 'initctl start svscan'
+  end
+  meet :on => :osx do
+    log_error "launchctl should have already started svscan. Check /var/log/system.log for errors."
+  end
+end
