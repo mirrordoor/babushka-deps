@@ -9,7 +9,7 @@ dep 'md-client-html5', :web_hostname, :listen_port do
     "nagey:vhost enabled.nginx".with(
       :domain => web_hostname,
       :vhost_type => "websocket_proxy",
-      :path => md_web_dir(package),
+      :path => md_web_dir(package)+"/app",
       :nginx_prefix => "/usr/local/nginx",
       :domain_aliases => '',
       :force_https => 'no',
@@ -24,7 +24,7 @@ dep 'md-client-html5', :web_hostname, :listen_port do
 end
 
 dep "md-client-html5 dependencies installed" do
-  requires "bower installed"
+  requires "bower installed", "grunt", "compass", "bower", "phantomjs"
   met? { File.exists? md_web_dir('client-html5')+"/app/components" }
   meet { shell "cd #{md_web_dir('client-html5')}; ./node_modules/bower/bin/bower install" }
 end
