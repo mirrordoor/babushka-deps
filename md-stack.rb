@@ -4,7 +4,8 @@ dep "md-stack" do
     "md-handHistory-logger",
     "md-ui-table",
     "md-client-html5",
-    "md-table"
+    "md-table",
+    "haproxy"
   ]
 end
 
