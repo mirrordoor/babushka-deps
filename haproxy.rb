@@ -10,6 +10,9 @@ dep "haproxy" do
   met? { 
     Babushka::Renderable.new(haproxy_config).from?(dependency.load_path.parent / "haproxy/haproxy.cfg.erb")
   }
+  meet {
+	render_erb "haproxy/haproxy.cfg.erb", :to => haproxy_config, :sudo => true
+  }
 end
 
 dep "haproxy.managed"
