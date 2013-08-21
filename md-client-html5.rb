@@ -14,12 +14,13 @@ dep 'md-client-html5', :web_hostname, :listen_port do
       :domain_aliases => '',
       :force_https => 'no',
       :enable_https => 'no',
-      :listen_host => "*",
+      :listen_host => "localhost",
       :listen_port => listen_port,
       :proxy_port => 3000,
       :proxy_host => "localhost"
     ),
-    "nagey:running.nginx".with(:nginx_prefix => "/usr/local/nginx")
+    "nagey:running.nginx".with(:nginx_prefix => "/usr/local/nginx"),
+    "haproxy"
   ]
 end
 
