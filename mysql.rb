@@ -14,6 +14,8 @@ dep "mysql" do
   end
 end
 
-dep "mysql-server.managed"
+dep "mysql-server.managed" do
+  provides "mysqld"
+end
 
 dep "mysql.managed"
