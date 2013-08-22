@@ -13,9 +13,12 @@ meta :launchd, :for => :osx do
       (destination / plist)
     end
 
+    pltemplate = Babushka::BrewHelper.brew_path_for(basename);
+
     requires 'launchd plist copied'.with(
       :package => basename,
       :plist => plist,
+      :plist_templ => pltemplate,
       :destination => destination
     )
 
@@ -28,9 +31,10 @@ meta :launchd, :for => :osx do
   }
 end
 
-dep 'launchd plist copied', :package, :plist, :destination, :for => :osx do
+dep 'launchd plist copied', :package, :plist, :destination, :plist_templ, :for => :osx do
   def brew_path
-    Babushka::BrewHelper.brew_path_for(package)
+     #Babushka::BrewHelper.brew_path_for(package)
+     plist_templ
   end
 
   def plist_template
