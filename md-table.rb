@@ -1,9 +1,25 @@
 host = Babushka::host
 
-dep 'gcc.managed'
+dep 'gcc' do
+  requires "tap-gcc", "gcc46.managed" if host.osx?
+  requires "gcc.managed" if host.linux?
+end
+
+dep "tap-gcc" do
+  met? { shell? "brew info gcc46" }
+  meet { shell "brew tap homebrew/versions" }
+end
+
+dep "gcc.managed"
+
+dep "gcc46.managed" do
+  provides "gcc-4.6"
+end
+
+
 
 dep 'binutils.managed' do
-  requires "binutils-dev.managed"
+  requires "binutils-dev.managed" if host.linux?
   met? { shell? "ls /usr/bin/ld" }
 end
 
@@ -47,7 +63,7 @@ end
 
 
 dep "md-table built", :package do
-  requires 'gcc.managed', 'binutils.managed', 'rabbitmq-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed'
+  requires 'gcc', 'binutils.managed', 'rabbitmq-dev', 'libjsoncpp0.managed', 'libjsoncpp-dev.managed', 'nagey:coreutils.managed'
 
   env_var = {}
   

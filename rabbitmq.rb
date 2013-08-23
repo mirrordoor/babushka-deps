@@ -33,7 +33,7 @@ dep "rabbitmq-dev linux" do
 end
 
 dep "rabbitmq-c.managed" do
-  met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.2/lib/librabbitmq.dylib" }
+  met? { shell? "ls /usr/local/Cellar/rabbitmq-c/0.4.0/lib/librabbitmq.dylib" }
 end
 
 dep 'librabbitmq-dev.managed' do

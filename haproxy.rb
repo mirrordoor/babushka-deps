@@ -4,10 +4,12 @@ end
 
 def haproxy_config
   return "/etc/haproxy/haproxy.cfg" if Babushka::host.linux?
+  return "/usr/local/opt/haproxy/haproxy.cfg" if Babushka::host.osx?
 end
 
 def haproxy_defaults
-  return "/etc/defaults/haproxy" if Babushke::host.linux?
+  return "/etc/defaults/haproxy" if Babushka::host.linux?
+  return "/usr/local/opt/haproxy/haproxy.defaults" if Babushka::host.osx?
 end
 
 dep "haproxy" do
@@ -18,7 +20,7 @@ dep "haproxy" do
   }
   meet {
 	render_erb "haproxy/haproxy.cfg.erb", :to => haproxy_config, :sudo => true
-	render_erb "haproxy/haproxy.defaults.erb", :to => haproxy_defaults, :sudo => true	
+	render_erb "haproxy/haproxy.defaults.erb", :to => haproxy_defaults, :sudo => true
   }
 end
 

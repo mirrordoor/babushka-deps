@@ -78,7 +78,7 @@ dep "md-package run script", :package do
   
   run_script = md_run_script package
   
-  met? { ((shell("ls -l #{run_script}").split(' ')[0][3]) == 120) }
+  met? { ((shell("ls -l #{run_script}").split(' ')[0][3].ord) == 120) }
   meet { shell "chmod u+x #{run_script}" }
 end
 
