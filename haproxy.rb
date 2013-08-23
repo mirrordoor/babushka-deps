@@ -8,7 +8,7 @@ def haproxy_config
 end
 
 def haproxy_defaults
-  return "/etc/defaults/haproxy" if Babushka::host.linux?
+  return "/etc/default/haproxy" if Babushka::host.linux?
   return "/usr/local/opt/haproxy/haproxy.defaults" if Babushka::host.osx?
 end
 
